@@ -76,6 +76,13 @@ public class ShadowTypedArray implements UsesResources {
         return defValue;
     }
 
+    @Implementation
+    public java.lang.CharSequence[] getTextArray(int index) {
+        ResName resName = getResName(index);
+        int resourceId = values.getAttributeResourceValue(resName.namespace, resName.name, -1);
+        return resources.getTextArray(resourceId);
+    }
+
     private ResName getResName(int index) {
         return resourceExtractor.getResName(attrs[index]);
     }
